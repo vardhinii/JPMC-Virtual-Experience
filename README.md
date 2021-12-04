@@ -18,3 +18,4 @@ I learnt,<em> How to, </em><br>
 Modify the typescript files in repository to make the web application behave in the expected manner.<br><br>
 <code> technical communication </code>&nbsp; <code> financial analysis </code>&nbsp; <code> web applications </code><br>
 <h1> My Certificate of Completion </h1>
+<img src="https://github.com/vardhinii/JPMC-Virtual-Experience/blob/main/JPMC-Certificate.png" alt="certificate of completion"/>
