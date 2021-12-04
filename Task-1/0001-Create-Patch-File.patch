@@ -1,0 +1,76 @@
+From 939819fcf34e00d6c93be53ebeb775e2b78369cd Mon Sep 17 00:00:00 2001
+From: vardhini <vardhini.kumaar@gmail.com>
+Date: Thu, 2 Dec 2021 11:15:56 +0530
+Subject: [PATCH] Create Patch File
+
+---
+ __pycache__/client3.cpython-310.pyc | Bin 0 -> 1128 bytes
+ client3.py                          |  11 +++++++----
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+ create mode 100644 __pycache__/client3.cpython-310.pyc
+
+diff --git a/__pycache__/client3.cpython-310.pyc b/__pycache__/client3.cpython-310.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..fe8652f65069cfe3e399c0401778234eab59a281
+GIT binary patch
+literal 1128
+zcmYjQPjA~c6elUlmJ&Ptm!>tk12?qT3@lBHUQ(momL}cS4K>mP88E_wpqS5z8d-8k
+zx<EYVlzoR?o!j;;_BnLjsrT*DQy=LhD24ZrdVKo5AD_x*bAjLr<X`EZF(LoD;M0YB
+z<U17e4=P0z&55MmGReFRWZ*5ATrnA{K-Lsj;U7fSRZZ2=Mi8s$i0K|IK<$ifk>8%m
+zMF?gMpl_SAB?xENfY10jIj84zcHLQdBPMVIGneH}sKd=O+T-$;T$Z=x3fxgK+=6Ae
+z4J!k_Le3~9$4_y00V24o7Fz^$qeafx#k>28?jrJC(r&)TE=YIs`JuI=&e~dD_S5{Z
+zG`6$;X#LUJ@fh^Ux0!nW`)T$cC8UpXwL<hb$|j0=fhs0btlA={)H;u~hzjtl^pyFS
+zU&X<cO@li`h4;uQpHdf1`G6yy`lKVab*aXE5NV!^av<y>hyp-?67SM{3`W>e96$j&
+zwU{JSYSU4f6;@QCv1R|Ls@rmu>}RS9M>^}nJWkEgdxjvpZCZtcyi9F7tit1QX+gXF
+zD#jDZ{6LJ!b62|t|0a47&4=}Vr?+Q7o8B)QJ6k`#>b?>`@4epG*y;VW{d#lNLjQ2p
+z;?dQ|tD}=Ay?&lSVV^u4om7njuv>_8+vCJqrh$sFh+fC1fsbzDM&ALsT+Vmm>Aj0i
+z><Ffc;^0Jz?IOifdXFG!!Q>0^16YBCWTm6bcafwbE!2g-FSNV5u5YBxWc?!L(%JVf
+z=E^~<B1F97>a{U4?w4SU(TH*sz2q~JWSC|}l1#pQ<5*PUff1<{Um=g32j**mOnB=*
+zg<g9S`HGlV1sg9mt6=Np_wANk8tXjI_8)4%aWhud=5fVsHU!DvnzE2JjlGmZ8NS(j
+zx$|p9yPmHrAVoTaB&kBoI)I9zhZn4jtY6lwW6g2|MO7P=dYIaZYe-d9^Y?Fbgbn#A
+z(C+uvu3dlgeu4^w<a;omkmLqJ&zX8Q#Cgr(8%MCYk1AS@kR{|Q;6cQqIEovAp!3^a
+Lp`S7SKMy_v#ZnZJ
+
+literal 0
+HcmV?d00001
+
+diff --git a/client3.py b/client3.py
+index f1771c3..71a1b1a 100644
+--- a/client3.py
++++ b/client3.py
+@@ -35,25 +35,28 @@ def getDataPoint(quote):
+ 	stock = quote['stock']
+ 	bid_price = float(quote['top_bid']['price'])
+ 	ask_price = float(quote['top_ask']['price'])
+-	price = bid_price
++	price = (bid_price + ask_price)/2
+ 	return stock, bid_price, ask_price, price
+ 
+ def getRatio(price_a, price_b):
+ 	""" Get ratio of price_a and price_b """
+ 	""" ------------- Update this function ------------- """
+ 	""" Also create some unit tests for this function in client_test.py """
+-	return 1
++	if (price_b == 0):
++		return
++	return price_a/price_b
+ 
+ # Main
+ if __name__ == "__main__":
+ 
+ 	# Query the price once every N seconds.
+-	for _ in iter(range(N)):
++	for _ in range(N):
+ 		quotes = json.loads(urllib.request.urlopen(QUERY.format(random.random())).read())
+ 
+ 		""" ----------- Update to get the ratio --------------- """
++		prices ={}
+ 		for quote in quotes:
+ 			stock, bid_price, ask_price, price = getDataPoint(quote)
+ 			print ("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
+ 
+-		print ("Ratio %s" % getRatio(price, price))
++		print ("Ratio %s" % (getRatio(prices['ABC'], prices['DEF'])))
+-- 
+2.34.1.windows.1
+
